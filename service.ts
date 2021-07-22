@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import {Model} from "./model";
+
 export class Service {
     constructor() {
     }
@@ -22,7 +23,7 @@ export class Service {
     }
 
     async createUser(id: number, nom: string, prenom: string) {
-        const model = new Model(id,nom,prenom);
+        const model = new Model({id:id,nom:nom,prenom:prenom});
 
         const response = await fetch("https://c1.cleverapps.io/collegues", {
                 method: "post",
@@ -37,11 +38,12 @@ export class Service {
 
     async updateUser(id:number,nom:string,prenom:string){
         const userM = this.findUserById(id).then(async (user) => {
-            user.nom = nom;
-            user.prenom = prenom
+            const model = {
+                nom:nom
+            }
             const response = await fetch("https://c1.cleverapps.io/collegues/"+id, {
                     method: "post",
-                    body: JSON.stringify(userM),
+                    body: JSON.stringify(user),
                     headers: {'Content-Type': 'application/json'}
                 }
             );

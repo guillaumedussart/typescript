@@ -83,7 +83,7 @@ var Service = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        model = new model_1.Model(id, nom, prenom);
+                        model = new model_1.Model({ id: id, nom: nom, prenom: prenom });
                         return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues", {
                                 method: "post",
                                 body: JSON.stringify(model),
@@ -106,15 +106,16 @@ var Service = /** @class */ (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 userM = this.findUserById(id).then(function (user) { return __awaiter(_this, void 0, void 0, function () {
-                    var response, data;
+                    var model, response, data;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
-                                user.nom = nom;
-                                user.prenom = prenom;
+                                model = {
+                                    nom: nom
+                                };
                                 return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues/" + id, {
                                         method: "post",
-                                        body: JSON.stringify(userM),
+                                        body: JSON.stringify(user),
                                         headers: { 'Content-Type': 'application/json' }
                                     })];
                             case 1:
