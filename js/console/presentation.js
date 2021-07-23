@@ -1,16 +1,12 @@
-import {Service} from "./service";
-import {UserJSON,User} from "./user";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Presentation = void 0;
+const service_1 = require("../common/service/service");
 const readLineSync = require('readline-sync');
-
-export class Presentation {
-    private service:Service;
-    // @ts-ignore
-    private user:UserJSON;
+class Presentation {
     constructor() {
-        this.service = new Service();
+        this.service = new service_1.Service();
     }
-
     demarrer() {
         let readUser;
         while (readUser != "99") {
@@ -23,7 +19,8 @@ export class Presentation {
             readUser = readLineSync.question("Faites votre choix : \n");
             if (readUser == "1") {
                 return this.getAllUser();
-            } else if (readUser == "2") {
+            }
+            else if (readUser == "2") {
                 let choiseId;
                 choiseId = readLineSync.question("Entrez son id : \n");
                 let choiceName;
@@ -31,12 +28,13 @@ export class Presentation {
                 let choiceFirstName;
                 choiceFirstName = readLineSync.question("Entrez son prenom : \n");
                 this.user = {
-                    nom:choiceName,
-                    prenom:choiceFirstName,
-                    id:choiseId
-                }
+                    nom: choiceName,
+                    prenom: choiceFirstName,
+                    id: choiseId
+                };
                 return this.createUser(this.user);
-            } else if(readUser == "3"){
+            }
+            else if (readUser == "3") {
                 let choiseId;
                 choiseId = readLineSync.question("Entrez son id : \n");
                 let choiceName;
@@ -44,28 +42,25 @@ export class Presentation {
                 let choiceFirstName;
                 choiceFirstName = readLineSync.question("Entrez son prenom : \n");
                 this.user = {
-                    nom:choiceName,
-                    prenom:choiceFirstName,
-                    id:choiseId
-                }
+                    nom: choiceName,
+                    prenom: choiceFirstName,
+                    id: choiseId
+                };
                 return this.updateUser(this.user);
             }
         }
     }
-
     /**
      * create user
      * @param id
      * @param nom
      * @param premon
      */
-    createUser(user:UserJSON) {
+    createUser(user) {
         this.service.createUser(user);
         console.log("User cree");
         this.demarrer();
     }
-
-
     /**
      * get all user
      */
@@ -76,21 +71,21 @@ export class Presentation {
                 "\n" +
                 "Nom : " + model.nom +
                 "\n" +
-                "------------------------------------------------------------------------"))
+                "------------------------------------------------------------------------"));
         });
         this.demarrer();
     }
-
     /**
      * update user by id
      * @param id
      * @param nom
      * @param prenom
      */
-    updateUser(user:UserJSON){
+    updateUser(user) {
         this.service.updateUser(user);
         console.log("User update");
         this.demarrer();
     }
-
 }
+exports.Presentation = Presentation;
+//# sourceMappingURL=presentation.js.map

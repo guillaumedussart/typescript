@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import {User,UserJSON} from "./user";
-import {config} from "./config";
+import {User,UserJSON} from "../model/user";
+import {config} from "../config/config";
 
 export class Service {
 
