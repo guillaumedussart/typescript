@@ -1,55 +1,50 @@
 import fetch from 'node-fetch';
-import {Model} from "./model";
+import {User,UserJSON} from "./user";
 
 export class Service {
     constructor() {
     }
-
     async findAllUser() {
-
         const response = await fetch("https://c1.cleverapps.io/collegues" );
-
-        const data:Model[] = await response.json();
+        const data:UserJSON[] = await response.json();
         return data;
-
     }
-    async findUserById(id:number) {
+
+    async findUserById(id:string) {
 
         const response = await fetch("https://c1.cleverapps.io/collegues/"+id );
 
-        const data:Model = await response.json();
+        const data:User = await response.json();
         return data;
 
     }
 
-    async createUser(id: number, nom: string, prenom: string) {
-        const model = new Model({id:id,nom:nom,prenom:prenom});
-
+    async createUser(user:UserJSON) {
+        const model = new User();
+        model.setId(user.id);
+        model.setNom(user.nom);
+        model.setPrenom(user.prenom);
         const response = await fetch("https://c1.cleverapps.io/collegues", {
                 method: "post",
                 body: JSON.stringify(model),
-                headers: {'Content-Type': 'application/json'}
+                headers: {"Content-Type": "application/json"}
             }
         );
-        const data = await response.json();
-
-        console.log("User cree");
+        return response;
     }
 
-    async updateUser(id:number,nom:string,prenom:string){
-        const userM = this.findUserById(id).then(async (user) => {
-            const model = {
-                nom:nom
-            }
-            const response = await fetch("https://c1.cleverapps.io/collegues/"+id, {
-                    method: "post",
-                    body: JSON.stringify(user),
+    async updateUser(user:UserJSON){
+        const userM = this.findUserById(user.id).then(async (userFind) => {
+            const model =new User();
+            model.setNom(user.nom);
+            model.setPrenom(user.prenom);
+            const response = await fetch("https://c1.cleverapps.io/collegues/"+user.id, {
+                    method: "put",
+                    body: JSON.stringify(model),
                     headers: {'Content-Type': 'application/json'}
                 }
             );
-            const data = await response.json();
-
-            console.log("User mis a jour");
+            return response;
         })
     }
 

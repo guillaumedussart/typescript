@@ -41,7 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Service = void 0;
 var node_fetch_1 = __importDefault(require("node-fetch"));
-var model_1 = require("./model");
+var user_1 = require("./user");
 var Service = /** @class */ (function () {
     function Service() {
     }
@@ -77,54 +77,49 @@ var Service = /** @class */ (function () {
             });
         });
     };
-    Service.prototype.createUser = function (id, nom, prenom) {
+    Service.prototype.createUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var model, response, data;
+            var model, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        model = new model_1.Model({ id: id, nom: nom, prenom: prenom });
+                        model = new user_1.User();
+                        model.setId(user.id);
+                        model.setNom(user.nom);
+                        model.setPrenom(user.prenom);
                         return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues", {
                                 method: "post",
                                 body: JSON.stringify(model),
-                                headers: { 'Content-Type': 'application/json' }
+                                headers: { "Content-Type": "application/json" }
                             })];
                     case 1:
                         response = _a.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 2:
-                        data = _a.sent();
-                        console.log("User cree");
-                        return [2 /*return*/];
+                        return [2 /*return*/, response];
                 }
             });
         });
     };
-    Service.prototype.updateUser = function (id, nom, prenom) {
+    Service.prototype.updateUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var userM;
             var _this = this;
             return __generator(this, function (_a) {
-                userM = this.findUserById(id).then(function (user) { return __awaiter(_this, void 0, void 0, function () {
-                    var model, response, data;
+                userM = this.findUserById(user.id).then(function (userFind) { return __awaiter(_this, void 0, void 0, function () {
+                    var model, response;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
-                                model = {
-                                    nom: nom
-                                };
-                                return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues/" + id, {
-                                        method: "post",
-                                        body: JSON.stringify(user),
+                                model = new user_1.User();
+                                model.setNom(user.nom);
+                                model.setPrenom(user.prenom);
+                                return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues/" + user.id, {
+                                        method: "put",
+                                        body: JSON.stringify(model),
                                         headers: { 'Content-Type': 'application/json' }
                                     })];
                             case 1:
                                 response = _a.sent();
-                                return [4 /*yield*/, response.json()];
-                            case 2:
-                                data = _a.sent();
-                                console.log("User mis a jour");
-                                return [2 /*return*/];
+                                return [2 /*return*/, response];
                         }
                     });
                 }); });

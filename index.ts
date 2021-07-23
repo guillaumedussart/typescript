@@ -1,5 +1,4 @@
 import {Presentation} from "./presentation";
-import {Service} from "./service";
 
 console.log('** Administration Collegues **');
 

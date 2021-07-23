@@ -5,6 +5,7 @@ var service_1 = require("./service");
 var readLineSync = require('readline-sync');
 var Presentation = /** @class */ (function () {
     function Presentation() {
+        this.service = new service_1.Service();
     }
     Presentation.prototype.demarrer = function () {
         var readUser;
@@ -26,7 +27,12 @@ var Presentation = /** @class */ (function () {
                 choiceName = readLineSync.question("Entrez son nom : \n");
                 var choiceFirstName = void 0;
                 choiceFirstName = readLineSync.question("Entrez son prenom : \n");
-                return this.createUser(choiseId, choiceName, choiceFirstName);
+                this.user = {
+                    nom: choiceName,
+                    prenom: choiceFirstName,
+                    id: choiseId
+                };
+                return this.createUser(this.user);
             }
             else if (readUser == "3") {
                 var choiseId = void 0;
@@ -35,17 +41,30 @@ var Presentation = /** @class */ (function () {
                 choiceName = readLineSync.question("Entrez son nom : \n");
                 var choiceFirstName = void 0;
                 choiceFirstName = readLineSync.question("Entrez son prenom : \n");
-                return this.updateUser(choiseId, choiceName, choiceFirstName);
+                this.user = {
+                    nom: choiceName,
+                    prenom: choiceFirstName,
+                    id: choiseId
+                };
+                return this.updateUser(this.user);
             }
         }
     };
-    Presentation.prototype.createUser = function (id, nom, premon) {
-        var service = new service_1.Service();
-        service.createUser(id, nom, premon);
+    /**
+     * create user
+     * @param id
+     * @param nom
+     * @param premon
+     */
+    Presentation.prototype.createUser = function (user) {
+        this.service.createUser(user);
+        console.log("User cree");
     };
+    /**
+     * get all user
+     */
     Presentation.prototype.getAllUser = function () {
-        var service = new service_1.Service();
-        return service.findAllUser().then(function (data) {
+        this.service.findAllUser().then(function (data) {
             data.forEach(function (model) { return console.log("Id : " + model.id + "\n" +
                 "Prenom : " + model.prenom +
                 "\n" +
@@ -54,9 +73,15 @@ var Presentation = /** @class */ (function () {
                 "------------------------------------------------------------------------"); });
         });
     };
-    Presentation.prototype.updateUser = function (id, nom, prenom) {
-        var service = new service_1.Service();
-        return service.updateUser(id, nom, prenom);
+    /**
+     * update user by id
+     * @param id
+     * @param nom
+     * @param prenom
+     */
+    Presentation.prototype.updateUser = function (user) {
+        this.service.updateUser(user);
+        console.log("User update");
     };
     return Presentation;
 }());
