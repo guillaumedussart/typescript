@@ -45,38 +45,10 @@ var user_1 = require("./user");
 var Service = /** @class */ (function () {
     function Service() {
     }
-    Service.prototype.findAllUser = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues")];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 2:
-                        data = _a.sent();
-                        return [2 /*return*/, data];
-                }
-            });
-        });
-    };
-    Service.prototype.findUserById = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues/" + id)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 2:
-                        data = _a.sent();
-                        return [2 /*return*/, data];
-                }
-            });
-        });
-    };
+    /**
+     * create user
+     * @param user
+     */
     Service.prototype.createUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var model, response;
@@ -95,6 +67,45 @@ var Service = /** @class */ (function () {
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response];
+                }
+            });
+        });
+    };
+    /**
+     * find all user
+     */
+    Service.prototype.findAllUser = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var response, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues")];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json()];
+                    case 2:
+                        data = _a.sent();
+                        return [2 /*return*/, data];
+                }
+            });
+        });
+    };
+    /**
+     * find user by id
+     * @param id
+     */
+    Service.prototype.findUserById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues/" + id)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json()];
+                    case 2:
+                        data = _a.sent();
+                        return [2 /*return*/, data];
                 }
             });
         });

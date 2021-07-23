@@ -22,7 +22,6 @@ export class Presentation {
             console.log("99. Sortir");
             readUser = readLineSync.question("Faites votre choix : \n");
             if (readUser == "1") {
-
                 return this.getAllUser();
             } else if (readUser == "2") {
                 let choiseId;

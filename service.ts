@@ -4,21 +4,11 @@ import {User,UserJSON} from "./user";
 export class Service {
     constructor() {
     }
-    async findAllUser() {
-        const response = await fetch("https://c1.cleverapps.io/collegues" );
-        const data:UserJSON[] = await response.json();
-        return data;
-    }
 
-    async findUserById(id:string) {
-
-        const response = await fetch("https://c1.cleverapps.io/collegues/"+id );
-
-        const data:User = await response.json();
-        return data;
-
-    }
-
+    /**
+     * create user
+     * @param user
+     */
     async createUser(user:UserJSON) {
         const model = new User();
         model.setId(user.id);
@@ -32,6 +22,27 @@ export class Service {
         );
         return response;
     }
+
+    /**
+     * find all user
+     */
+    async findAllUser() {
+        const response = await fetch("https://c1.cleverapps.io/collegues" );
+        const data:UserJSON[] = await response.json();
+        return data;
+    }
+
+    /**
+     * find user by id
+     * @param id
+     */
+    async findUserById(id:string) {
+        const response = await fetch("https://c1.cleverapps.io/collegues/"+id );
+        const data:User = await response.json();
+        return data;
+
+    }
+
 
     async updateUser(user:UserJSON){
         const userM = this.findUserById(user.id).then(async (userFind) => {

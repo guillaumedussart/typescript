@@ -36,7 +36,7 @@ export class User {
 
 }
 
-export interface UserJSON {
+export interface UserJSON{
     id: string;
     nom: string;
     prenom: string;
