@@ -1,46 +1,45 @@
 import fetch from 'node-fetch';
 import {User,UserJSON} from "./user";
+import {config} from "./config";
 
 export class Service {
-    constructor() {
-    }
+
 
     /**
      * create user
      * @param user
      */
-    async createUser(user:UserJSON) {
+    async createUser(user:UserJSON):Promise<User> {
         const model = new User();
         model.setId(user.id);
         model.setNom(user.nom);
         model.setPrenom(user.prenom);
-        const response = await fetch("https://c1.cleverapps.io/collegues", {
+        const response = await fetch(config.baseUrlApiCollegue, {
                 method: "post",
                 body: JSON.stringify(model),
                 headers: {"Content-Type": "application/json"}
             }
         );
-        return response;
+        return response.json();
     }
 
     /**
      * find all user
      */
-    async findAllUser() {
-        const response = await fetch("https://c1.cleverapps.io/collegues" );
+    async findAllUser():Promise<UserJSON[]> {
+        const response = await fetch(config.baseUrlApiCollegue );
         const data:UserJSON[] = await response.json();
-        return data;
+        return data.filter(col=>col.nom);
     }
 
     /**
      * find user by id
      * @param id
      */
-    async findUserById(id:string) {
-        const response = await fetch("https://c1.cleverapps.io/collegues/"+id );
+    async findUserById(id:string):Promise<User> {
+        const response = await fetch(config.baseUrlApiCollegue+id );
         const data:User = await response.json();
         return data;
-
     }
 
 
@@ -49,13 +48,13 @@ export class Service {
             const model =new User();
             model.setNom(user.nom);
             model.setPrenom(user.prenom);
-            const response = await fetch("https://c1.cleverapps.io/collegues/"+user.id, {
+            const response = await fetch(config.baseUrlApiCollegue+user.id, {
                     method: "put",
                     body: JSON.stringify(model),
                     headers: {'Content-Type': 'application/json'}
                 }
             );
-            return response;
+            return response.json();
         })
     }
 

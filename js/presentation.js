@@ -59,6 +59,7 @@ var Presentation = /** @class */ (function () {
     Presentation.prototype.createUser = function (user) {
         this.service.createUser(user);
         console.log("User cree");
+        this.demarrer();
     };
     /**
      * get all user
@@ -72,6 +73,7 @@ var Presentation = /** @class */ (function () {
                 "\n" +
                 "------------------------------------------------------------------------"); });
         });
+        this.demarrer();
     };
     /**
      * update user by id
@@ -82,6 +84,7 @@ var Presentation = /** @class */ (function () {
     Presentation.prototype.updateUser = function (user) {
         this.service.updateUser(user);
         console.log("User update");
+        this.demarrer();
     };
     return Presentation;
 }());

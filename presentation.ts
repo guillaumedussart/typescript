@@ -62,6 +62,7 @@ export class Presentation {
     createUser(user:UserJSON) {
         this.service.createUser(user);
         console.log("User cree");
+        this.demarrer();
     }
 
 
@@ -77,6 +78,7 @@ export class Presentation {
                 "\n" +
                 "------------------------------------------------------------------------"))
         });
+        this.demarrer();
     }
 
     /**
@@ -88,6 +90,7 @@ export class Presentation {
     updateUser(user:UserJSON){
         this.service.updateUser(user);
         console.log("User update");
+        this.demarrer();
     }
 
 }

@@ -42,6 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Service = void 0;
 var node_fetch_1 = __importDefault(require("node-fetch"));
 var user_1 = require("./user");
+var config_1 = require("./config");
 var Service = /** @class */ (function () {
     function Service() {
     }
@@ -59,14 +60,14 @@ var Service = /** @class */ (function () {
                         model.setId(user.id);
                         model.setNom(user.nom);
                         model.setPrenom(user.prenom);
-                        return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues", {
+                        return [4 /*yield*/, node_fetch_1.default(config_1.config.baseUrlApiCollegue, {
                                 method: "post",
                                 body: JSON.stringify(model),
                                 headers: { "Content-Type": "application/json" }
                             })];
                     case 1:
                         response = _a.sent();
-                        return [2 /*return*/, response];
+                        return [2 /*return*/, response.json()];
                 }
             });
         });
@@ -79,13 +80,13 @@ var Service = /** @class */ (function () {
             var response, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues")];
+                    case 0: return [4 /*yield*/, node_fetch_1.default(config_1.config.baseUrlApiCollegue)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.json()];
                     case 2:
                         data = _a.sent();
-                        return [2 /*return*/, data];
+                        return [2 /*return*/, data.filter(function (col) { return col.nom; })];
                 }
             });
         });
@@ -99,7 +100,7 @@ var Service = /** @class */ (function () {
             var response, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues/" + id)];
+                    case 0: return [4 /*yield*/, node_fetch_1.default(config_1.config.baseUrlApiCollegue + id)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.json()];
@@ -123,14 +124,14 @@ var Service = /** @class */ (function () {
                                 model = new user_1.User();
                                 model.setNom(user.nom);
                                 model.setPrenom(user.prenom);
-                                return [4 /*yield*/, node_fetch_1.default("https://c1.cleverapps.io/collegues/" + user.id, {
+                                return [4 /*yield*/, node_fetch_1.default(config_1.config.baseUrlApiCollegue + user.id, {
                                         method: "put",
                                         body: JSON.stringify(model),
                                         headers: { 'Content-Type': 'application/json' }
                                     })];
                             case 1:
                                 response = _a.sent();
-                                return [2 /*return*/, response];
+                                return [2 /*return*/, response.json()];
                         }
                     });
                 }); });
