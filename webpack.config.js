@@ -1,4 +1,7 @@
-const path = require( 'path' );
+const path = require('path'),
+	webpack = require('webpack'),
+	HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
 // utile pour le débogage des sources TypeScript
 	devtool: 'source-map',
@@ -10,12 +13,12 @@ module.exports = {
 // ici /public
 // le fichier en sortie s'appelera main.js
 	output: {
-		path: path.resolve( __dirname, 'public' ),
+		path: path.resolve(__dirname, 'public','assets/js'),
 		filename: 'main.js',
 	},
 // résolution des fichiers
 	resolve: {
-		extensions: [ '.ts', '.js' ],
+		extensions: ['.ts', '.js'],
 	},
 // loaders
 	module: {
@@ -34,4 +37,8 @@ module.exports = {
 		port: 9000,
 		watchContentBase: true
 	},
+	plugins: [
+		new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') }),
+		new webpack.HotModuleReplacementPlugin()
+	]
 };

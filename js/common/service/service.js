@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Service = void 0;
-const node_fetch_1 = __importDefault(require("node-fetch"));
+const unfetch_1 = __importDefault(require("unfetch"));
 const user_1 = require("../model/user");
 const config_1 = require("../config/config");
 class Service {
@@ -27,7 +27,7 @@ class Service {
             model.setId(user.id);
             model.setNom(user.nom);
             model.setPrenom(user.prenom);
-            const response = yield node_fetch_1.default(config_1.config.baseUrlApiCollegue, {
+            const response = yield unfetch_1.default(config_1.config.baseUrlApiCollegue, {
                 method: "post",
                 body: JSON.stringify(model),
                 headers: { "Content-Type": "application/json" }
@@ -40,7 +40,7 @@ class Service {
      */
     findAllUser() {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield node_fetch_1.default(config_1.config.baseUrlApiCollegue);
+            const response = yield unfetch_1.default(config_1.config.baseUrlApiCollegue);
             const data = yield response.json();
             return data.filter(col => col.nom);
         });
@@ -51,7 +51,7 @@ class Service {
      */
     findUserById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield node_fetch_1.default(config_1.config.baseUrlApiCollegue + id);
+            const response = yield unfetch_1.default(config_1.config.baseUrlApiCollegue + id);
             const data = yield response.json();
             return data;
         });
@@ -62,7 +62,7 @@ class Service {
                 const model = new user_1.User();
                 model.setNom(user.nom);
                 model.setPrenom(user.prenom);
-                const response = yield node_fetch_1.default(config_1.config.baseUrlApiCollegue + user.id, {
+                const response = yield unfetch_1.default(config_1.config.baseUrlApiCollegue + user.id, {
                     method: "put",
                     body: JSON.stringify(model),
                     headers: { 'Content-Type': 'application/json' }

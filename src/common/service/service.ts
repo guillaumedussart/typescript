@@ -1,4 +1,5 @@
-import fetch from 'node-fetch';
+import fetch from 'unfetch';
+
 import {User,UserJSON} from "../model/user";
 import {config} from "../config/config";
 
