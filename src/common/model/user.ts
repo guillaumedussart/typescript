@@ -1,4 +1,5 @@
 
+
 export class User {
     // @ts-ignore
     private id: string;
@@ -6,6 +7,8 @@ export class User {
     private nom: string;
     // @ts-ignore
     private prenom: string;
+    // @ts-ignore
+    private email: string;
 
     constructor() {
     }
@@ -33,6 +36,13 @@ export class User {
     setPrenom(prenom: string) {
         this.prenom = prenom;
     }
+    getEmail(): string {
+        return this.email;
+    }
+
+    setEmail(email: string) {
+        this.email = email;
+    }
 
 }
 
@@ -40,4 +50,5 @@ export interface UserJSON{
     id: string;
     nom: string;
     prenom: string;
+    email: string;
 }

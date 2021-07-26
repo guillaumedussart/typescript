@@ -27,10 +27,13 @@ class Presentation {
                 choiceName = readLineSync.question("Entrez son nom : \n");
                 let choiceFirstName;
                 choiceFirstName = readLineSync.question("Entrez son prenom : \n");
+                let choiceEmail;
+                choiceEmail = readLineSync.question("Entrez son prenom : \n");
                 this.user = {
                     nom: choiceName,
                     prenom: choiceFirstName,
-                    id: choiseId
+                    id: choiseId,
+                    email: choiceEmail
                 };
                 return this.createUser(this.user);
             }
@@ -41,10 +44,13 @@ class Presentation {
                 choiceName = readLineSync.question("Entrez son nom : \n");
                 let choiceFirstName;
                 choiceFirstName = readLineSync.question("Entrez son prenom : \n");
+                let choiceEmail;
+                choiceEmail = readLineSync.question("Entrez son prenom : \n");
                 this.user = {
                     nom: choiceName,
                     prenom: choiceFirstName,
-                    id: choiseId
+                    id: choiseId,
+                    email: choiceEmail
                 };
                 return this.updateUser(this.user);
             }

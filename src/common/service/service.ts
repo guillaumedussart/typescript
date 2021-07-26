@@ -30,7 +30,7 @@ export class Service {
     async findAllUser():Promise<UserJSON[]> {
         const response = await fetch(config.baseUrlApiCollegue );
         const data:UserJSON[] = await response.json();
-        return data.filter(col=>col.nom);
+        return data.filter(col=>col.nom).filter(col=>col.email);
     }
 
     /**

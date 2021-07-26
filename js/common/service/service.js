@@ -42,7 +42,7 @@ class Service {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield unfetch_1.default(config_1.config.baseUrlApiCollegue);
             const data = yield response.json();
-            return data.filter(col => col.nom);
+            return data.filter(col => col.nom).filter(col => col.email);
         });
     }
     /**

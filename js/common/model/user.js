@@ -22,6 +22,12 @@ class User {
     setPrenom(prenom) {
         this.prenom = prenom;
     }
+    getEmail() {
+        return this.email;
+    }
+    setEmail(email) {
+        this.email = email;
+    }
 }
 exports.User = User;
 //# sourceMappingURL=user.js.map

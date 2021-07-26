@@ -20,20 +20,64 @@
         </a>
 
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page" id="list-coll">Liste des collegues</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page" id="list-coll">Ajouter collegue</a></li>
         </ul>
     </header>
 </div>
 
-<h1>Application collegue</h1>
-<button (click)="Presentations.myMethod($event)">Click Event</button>
-<ul id="output"></ul>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>email</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="tbody-collegue">
+
+        </tbody>
+    </table>
+</div>
 <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/main.js"></script>
 
 </body>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="post" id="form-coll">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleInputId" class="form-label">Id</label>
+                        <input type="email" class="form-control" id="exampleInputId" aria-describedby="emailHelp" name="id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputName" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="exampleInputName" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputFirstName" class="form-label">Prenom</label>
+                        <input type="text" class="form-control" id="exampleInputFirstName" name="firstname">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </html>
